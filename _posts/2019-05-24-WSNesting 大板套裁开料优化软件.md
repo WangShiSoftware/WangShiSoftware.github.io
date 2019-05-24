@@ -27,4 +27,4 @@ title: WSNesting 大板套裁开料优化软件
 
 ![导入页面]({{ "/assets/images/WSNesting/page_import.png" | absolute_url }})
 
-![排版结果页面]({{ "/assets/images/WSNesting/page_result.png" | absolute_url }})
+![排版结果页面]({{ "/assets/images/WSNesting/page_opt_result.png" | absolute_url }})
