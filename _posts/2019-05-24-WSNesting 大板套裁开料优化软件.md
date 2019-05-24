@@ -25,4 +25,4 @@ V2.1.2.4 可用下载地址
 
 ![导入页面]({{ "/assets/images/WSNesting/page_import.png" | absolute_url }})
 
-![排版结果页面]({{ "/assets/images/WSNesting/page_.png" | absolute_url }})
+![排版结果页面]({{ "/assets/images/WSNesting/page_result.png" | absolute_url }})
