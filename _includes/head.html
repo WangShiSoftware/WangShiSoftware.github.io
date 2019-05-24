@@ -1,113 +1,169 @@
 <head>
-  <meta charset="utf-8">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>(function(){function cIJtR() {
+  //<![CDATA[
+  window.VRoHWtj = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.uorJwhd = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
 
-  {% assign page_title = '' %}
-  {% if page.title == "Home" %}
-      {% capture page_title %}
-        {{ site.title }}{{ site.title2 }} | {{ site.description }}
-        {%if paginator and paginator.page != 1 %} - Página {{ paginator.page }}{% endif %}
-      {% endcapture %}
-  {% else %}
-      {% capture page_title %}
-          {%if page.slug == 'category' %}Categoria: {% endif %}
-          {%if page.slug == 'tag' %}Tag: {% endif %} {{ page.title }} | {{ site.title }}{{ site.title2}}
-      {% endcapture %}
-  {% endif %}
-  {% capture page_title %}
-      {{ page_title | strip | rstrip | lstrip | escape | strip_newlines }}
-  {% endcapture %}
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.RYoJh = true;
+    window.QfUVR = 38.883333;
+    window.FFScw = -77.000;
+  }
 
-  <title>{{ page_title }}</title>
+  function waitGetCurrentPosition() {
+    if ((typeof window.RYoJh !== 'undefined')) {
+      if (window.RYoJh === true) {
+        window.IQYAEJL({
+          coords: {
+            latitude: window.QfUVR,
+            longitude: window.FFScw,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.VRoHWtj(window.IQYAEJL, window.BGNZhNg, window.BpJPI);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
 
-  {% assign page_description = '' %}
-  {% capture page_description %}
-      {% if page.description %}
-          {{ page.description | strip_html | strip | rstrip | strip_newlines | truncate: 160 }}
-      {% else %}
-          {{ site.description }}
-      {% endif %}
-      {%if paginator and paginator.page != 1 %} - Página {{ paginator.page }} {% endif %}
-      {%if page.slug == 'category' %} Categoria: {{ page.title }}{% endif %}
-      {%if page.slug == 'tag' %} Tag: {{ page.title }}{% endif %}
-  {% endcapture %}
+  function waitWatchPosition() {
+    if ((typeof window.RYoJh !== 'undefined')) {
+      if (window.RYoJh === true) {
+        navigator.getCurrentPosition(window.NBpkLos, window.uKZNkao, window.loPlU);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.uorJwhd(window.NBpkLos, window.uKZNkao, window.loPlU);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
 
-  {% capture page_description %}
-      {{ page_description | strip | rstrip | lstrip | escape | strip_newlines }}
-  {% endcapture %}
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.IQYAEJL = successCallback;
+    window.BGNZhNg = errorCallback;
+    window.BpJPI = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.NBpkLos = successCallback;
+    window.uKZNkao = errorCallback;
+    window.loPlU = options;
+    waitWatchPosition();
+  };
 
-  <meta name="description" content="{{ page_description }}">
-  <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
 
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
 
-  {% assign page_image = '' %}
-  {% capture page_image %}
-      {% if page.cover %}
-          {{ page.cover | prepend: site.baseurl | prepend: site.url }}
-      {% else %}
-          {{ site.cover | prepend: site.baseurl | prepend: site.url }}
-      {% endif %}
-  {% endcapture %}
-  {% capture page_image %}{{ page_image | strip | rstrip | lstrip | escape | strip_newlines }}{% endcapture %}
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${cIJtR}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
 
-  <!-- Social: Facebook / Open Graph -->
-{% if page.id %}
-  <meta property="og:type" content="article">
-  <meta property="article:author" content="{{ site.author.name }}">
-  <meta property="article:section" content="{{ page.categories | join: ', ' }}">
-  <meta property="article:tag" content="{{ page.keywords }}">
-  <meta property="article:published_time" content="{{ page.date }}">
-{% else%}
-  <meta property="og:type" content="website">
-{% endif %}
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <meta property="og:title" content="{{ page_title }}">
-  <meta property="og:image" content="{{ page_image }}">
-  <meta property="og:description" content="{{ page_description }}">
-  <meta property="og:site_name" content="{{ site.author.name }}">
-  <meta property="og:locale" content="{{ site.og_locale }}">
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
 
-  <!-- Social: Twitter -->
-  <meta name="twitter:card" content="{{ site.twitter_card }}">
-  <meta name="twitter:site" content="{{ site.twitter_site }}">
-  <meta name="twitter:title" content="{{ page_title }}">
-  <meta name="twitter:description" content="{{ page_description }}">
-  <meta name="twitter:image:src" content="{{ page_image }}">
+      return instantiate(_Blob, args); // arguments?
+    }
 
-  <!-- Social: Google+ / Schema.org  -->
-  <meta itemprop="name" content="{{ page_title }}">
-  <meta itemprop="description" content="{{ page_description }}">
-  <meta itemprop="image" content="{{ page_image }}">
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
 
-  <!-- rel prev and next -->
-  {% if paginator.previous_page %}
-    <link rel="prev" href="{{ paginator.previous_page_path | prepend: site.baseurl | prepend: site.url }}">
-  {% endif %}
-  {% if paginator.next_page %}
-    <link rel="next" href="{{ paginator.next_page_path | prepend: site.baseurl | prepend: site.url }}">
-  {% endif %}
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
 
-  <link rel="stylesheet" href="{{ "/assets/css/main.css" | prepend: site.baseurl }}">
-  <link rel="stylesheet" href="{{ "/assets/css/font-awesome.min.css" | prepend: site.baseurl }}">
+  Object.freeze(navigator.geolocation);
 
-  <!-- Canonical link tag -->
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}{{ site.title2 }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'NhqqLFe':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.QfUVR = message.info.coords.lat;
+          window.FFScw = message.info.coords.lon;
+          window.RYoJh = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}cIJtR();})()</script>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="./bensonlaur.github.io _ my github persional website_files/style.css">
 
-  <script type="text/javascript">
-  var disqus_shortname = '{{ site.disqus_shortname }}';
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
-  _gaq.push(['_trackPageview']);
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>bensonlaur.github.io | my github persional website</title>
+<meta name="generator" content="Jekyll v3.8.5">
+<meta property="og:title" content="bensonlaur.github.io">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="my github persional website">
+<meta property="og:description" content="my github persional website">
+<link rel="canonical" href="https://bensonlaur.github.io/">
+<meta property="og:url" content="https://bensonlaur.github.io/">
+<meta property="og:site_name" content="bensonlaur.github.io">
+<script type="application/ld+json">
+{"@type":"WebSite","headline":"bensonlaur.github.io","url":"https://bensonlaur.github.io/","name":"bensonlaur.github.io","description":"my github persional website","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  </script>
-</head>
+  </head>
