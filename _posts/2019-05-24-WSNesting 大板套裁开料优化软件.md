@@ -5,7 +5,7 @@ title: WSNesting 大板套裁开料优化软件
 
 ### 最新版本下载
 
-[![版本号](https://img.shields.io/badge/release-2.1.2.4-blue.svg?style=flat-square)](https://github.com/WangShiSoftware/Release-WSNesting/releases)   V2.1.2.4 可用下载地址  
+下载地址  
 
 + [github](https://github.com/WangShiSoftware/Release-WSNesting/releases)
 + [腾讯微云](https://share.weiyun.com/5CS6FAc)
