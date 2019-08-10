@@ -8,6 +8,7 @@ title: WSNesting 大板套裁开料优化软件
 下载地址  
 
 + [github](https://github.com/WangShiSoftware/Release-WSNesting/releases)
++ [百度网盘](https://pan.baidu.com/s/1CN_fRoaaN2bx1uNM2UcArQ ) &nbsp;&nbsp; *提取码*：**mqyz**
 + [腾讯微云](https://share.weiyun.com/5CS6FAc)
 
 
