@@ -10,7 +10,8 @@ title: WSNesting 大板套裁开料优化软件
 + [github](https://github.com/WangShiSoftware/Release-WSNesting/releases)
 + [百度网盘](https://pan.baidu.com/s/1CN_fRoaaN2bx1uNM2UcArQ ) &nbsp;&nbsp; *提取码*：**mqyz**
 + [腾讯微云](https://share.weiyun.com/5CS6FAc)
-
++ [王石云拆单1](http://106.74.18.33:33333/dsFront/downloadNesting)
++ [王石云拆单2](http://http://ds.wongshek.cn/dsFront/downloadNesting)
 
 ### 软件概述
   大板套裁开料优化软件用于家具生产企业，可以对家具原始板件料单进行导入，优化排版，生产企业需要的机器加工代码等数据。高利用的排版可减少使用原料，成熟的走刀控制算法能减少加工时间，为家具生产企业省时省力，提高生产效率。
